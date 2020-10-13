@@ -1,10 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-
-    <h2> 1 </h2>
-
-    <h2>Ecosystem</h2>
+    <h2>{{message}}</h2>
     <button @click="add">按钮</button>
   </div>
 </template>
@@ -15,6 +12,7 @@ export default {
   data () {
     return {
       msg:' Eos toa bpp',
+      message: 'hello world',
     }
   },
   methods:{
