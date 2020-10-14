@@ -1,12 +1,11 @@
 <template>
   <div class="hello">
-    HELLO 来到首页
+    报表管理
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Index',
   data () {
     return {
     }

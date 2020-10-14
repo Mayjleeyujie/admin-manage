@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 import ElementUI from 'element-ui'
+import './css/style.css'
 
 
 Vue.config.productionTip = false

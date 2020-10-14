@@ -34,8 +34,17 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
-      },
+        options: {
+            loaders: {
+                css: 'vue-style-loader!css-loader',
+                less: 'vue-style-loader!css-loader!less-loader',
+                scss: 'style-loader!css-loader!sass-loader'
+            },
+            postLoaders: {
+                html: 'babel-loader'
+            }
+        }
+    },
       {
         test: /\.js$/,
         loader: 'babel-loader',
