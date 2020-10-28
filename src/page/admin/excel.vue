@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
-    报表管理
+    报表管理123123132
   </div>
 </template>
 
 <script>
 export default {
+  name:'excel',
   data () {
     return {
     }
