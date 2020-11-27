@@ -19,16 +19,16 @@ const defaultrouteList = [
         name: '首页',
         component: 'admin/dashed'
       },
-      // {
-      //   path: '/excel',
-      //   name: '报表管理',
-      //   component: 'admin/excel'
-      // },
       {
-        path: '/user',
-        name: '表单',
-        component: 'admin/user'
+        path: '/excel',
+        name: '报表管理',
+        component: 'admin/excel'
       },
+      // {
+      //   path: '/user',
+      //   name: '表单',
+      //   component: 'admin/user'
+      // },
      
     ]
   },
