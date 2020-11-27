@@ -19,15 +19,23 @@ const defaultrouteList = [
         name: '首页',
         component: 'admin/dashed'
       },
+      // {
+      //   path: '/excel',
+      //   name: '报表管理',
+      //   component: 'admin/excel'
+      // },
       {
-        path: '/excel',
-        name: '报表',
-        component: 'admin/excel'
-      }]
-    },
+        path: '/user',
+        name: '表单',
+        component: 'admin/user'
+      },
+     
+    ]
+  },
   ]
 export function routerMenuFun(defaultrouteList){
   let routerList=[];
+  // console.log(defaultrouteList,'defaultrouteList')
   defaultrouteList.forEach(el=>{
       let obj={
         path:el.path,

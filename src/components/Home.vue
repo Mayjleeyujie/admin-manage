@@ -2,20 +2,23 @@
   <div class="index_body">
     <div class="header">
       <div class="dept">
-        <span class="depttitle">{{ proName }}</span>
+        <span class="depttitle">
+          <!-- {{ proName }} -->
+        </span>
       </div>
       <div class="msg">
         <el-dropdown>
              <span class="el-dropdown-link">
                 <span class="photo">
                 <img src="../img/photo.png" alt="" />
-                {{ userInfo.name }}
+                <!-- {{ userInfo.name }} -->
                 </span>
             </span>
              <el-dropdown-menu slot="dropdown">
                 <ul class="userM">
                     <li class="user_msg"><span>姓名：</span><span>Dao</span></li>
                     <li class="user_msg"><span>电话：</span><span>180-1122-3311</span></li>
+                    <li class="user_msg"><span>地址：</span><span>西大门</span></li>
                 </ul>
             <el-dropdown-item><el-button @click="loginOut" type="text">退出</el-button></el-dropdown-item>
           </el-dropdown-menu>
@@ -31,7 +34,13 @@
         active-text-color="#FFFFFF"
       >
         <div v-for="(item, index) in routerData" :key="index">
+
           <div v-if="item.children">
+            <!-- <template v-if="item.leaf">
+              <el-menu-item :index="item.children[0].path">
+                 {{item.children[0].name}}
+                </el-menu-item>
+            </template> -->
             <template v-for="child in item.children">
                 <el-menu-item :key="child.path" :index="child.path">
                  {{child.name}}
@@ -70,7 +79,8 @@ export default {
   created() {
     // console.log(JSON.parse(localStorage.getItem('defaultrouteList')))
     // console.log(this.$router.options.routes, "ab");
-    console.log(this.$route.path, "222");
+    // console.log(this.$route.path, "222");
+    // console.log(this.routerData,'routerData')
   },
   mounted(){
     this.selectRouteFun();
@@ -89,7 +99,7 @@ export default {
               return this.defaultActive = el.path;
             }
           });
-          console.log(el.children,'children')
+          // console.log(el.children,'children')
         }
       });
     },
@@ -133,6 +143,12 @@ export default {
         height: 28px;
         vertical-align: middle;
         margin-right: 10px;
+      }
+      .userM{
+        padding:10px;
+        >>>.user_msg{
+          padding:10px;
+        }
       }
     }
   }
