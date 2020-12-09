@@ -29,6 +29,16 @@ const defaultrouteList = [
         name: '表单',
         component: 'admin/user'
       },
+      {
+        path: '/flowedit',
+        name: '表单管理器',
+        component: 'admin/flowedit'
+      },
+      {
+        path: '/tables',
+        name: 'table',
+        component: 'admin/tables'
+      },
      
     ]
   },

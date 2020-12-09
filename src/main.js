@@ -11,11 +11,28 @@ import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 
+//  import KFormDesign from 'k-form-design'
+//  import KFormDesign from 'k-form-design/lib/k-form-design-mini.umd.min'
+// import 'k-form-design/lib/k-form-design.css'
+// Vue.use(KFormDesign)
+
 import DynamicForm from 'vue-dynamic-form-component'
 Vue.use(DynamicForm)
+import VueFormGenerator from "vue-form-generator";
+import "vue-form-generator/dist/vfg.css";  // optional full css additions
 
+Vue.use(VueFormGenerator)
+import formCreate from '@form-create/element-ui';
+
+
+import KFormDesign from 'k-form-design'
+import 'k-form-design/lib/k-form-design.css'
+Vue.use(KFormDesign)
+ 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(formCreate)
+
 Vue.prototype.$axios = axios;
 /* eslint-disable no-new */
 new Vue({

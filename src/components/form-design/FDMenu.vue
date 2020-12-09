@@ -122,7 +122,39 @@ export default {
                         disabled: false
                         },
                         key: ''
+                    },
+                    {
+                        type:"switch",
+                        title:"是否上架",
+                        field:"is_show",
+                        value:"1",
+                        props: {
+                            "trueValue":"1", 
+                            "falseValue":"0",
+                            "slot": {
+                                open:"上架", 
+                                close:"下架", 
+                            }, 
+                        },
+                    },
+                    {
+                        type: "DatePicker",
+                        field: "section_day",
+                        title: "活动日期",
+                        value: ['2018-02-20', new Date()], 
+                        props: {
+                            "type": "datetimerange",
+                            "format": "yyyy-MM-dd HH:mm:ss", 
+                            "placeholder":"请选择活动日期", 
+                        }
+                    },
+                    {
+                        type: "ColorPicker",
+                        field: "color",
+                        title: "颜色",
+                        value: '#ff7271',
                     }
+
                     
                 ]
             }
