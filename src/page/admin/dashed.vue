@@ -111,7 +111,7 @@
 import BpmnModeler from "bpmn-js/lib/Modeler";
 import { xmlStr } from "@/mock/xmlStr"
 // import {CustomModeler} from "@/components/customBpmn"
-// import customControlsModule from '@/custom-modeler/custom'
+
 
 export default {
   data() {
