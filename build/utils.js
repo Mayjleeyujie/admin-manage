@@ -37,7 +37,8 @@ exports.cssLoaders = function (options) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+          sourceMap: options.sourceMap,
+          javascriptEnabled:true
         })
       })
     }
@@ -57,7 +58,14 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    less: generateLoaders('less',{
+          modifyVars: {
+            'primary-color': '#blue', 
+             'link-color': '#pink',
+             'border-radius-base': '2px',
+           },
+           javascriptEnabled: true,
+    }),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')

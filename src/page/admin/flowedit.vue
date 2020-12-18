@@ -8,7 +8,7 @@
       ></form-create> -->
       <!-- <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator> -->
 
-      <el-button @click="openDialog">
+      <!-- <el-button @click="openDialog">
         表单
       </el-button>
       <el-dialog
@@ -19,14 +19,12 @@
         :before-close="handleClose"
         :modal-append-to-body="false"
         :close-on-click-modal="false"
-      >
-        <k-form-design :toolbars="['save', 'preview', 'importJson']" title="表单设计器" />
-      </el-dialog>
-     
+      > -->
+        <k-form-design  title="表单设计器" toolbarsTop @save="handleSave" :showToolbarsText="true"/>
+      <!-- </el-dialog> -->
     </div>
   </div>
 </template>
-
 <script>
 // import draggable from 'vuedraggable'
 
@@ -155,8 +153,6 @@ export default {
         validateAfterChanged: true,
         validateAsync: true
       }
-
-      
     };
   },
   methods: {
@@ -168,6 +164,9 @@ export default {
     },
     handleClose(){
       this.dialogVisible = false;
+    },
+    handleSave(){
+      console.log('保存')
     }
   },
 };
