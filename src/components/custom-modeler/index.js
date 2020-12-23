@@ -23,7 +23,7 @@ CustomModeler.prototype._modules = [].concat(
   ]
 )
 
-/**
+/** 
  * Add a single custom element to the underlying diagram
  *
  * @param {Object} customElement
@@ -43,7 +43,7 @@ CustomModeler.prototype._addCustomShape = function(customElement) {
 CustomModeler.prototype._addCustomConnection = function(customElement) {
   this._customElements.push(customElement)
 
-  var canvas = this.get('canvas'),
+    var canvas = this.get('canvas'),
     elementFactory = this.get('elementFactory'),
     elementRegistry = this.get('elementRegistry')
 
@@ -68,7 +68,7 @@ CustomModeler.prototype.addCustomElements = function(customElements) {
   }
 
   var shapes = [],
-    connections = []
+  connections = []
   customElements.forEach(function(customElement) {
     if (isCustomConnection(customElement)) {
       connections.push(customElement)

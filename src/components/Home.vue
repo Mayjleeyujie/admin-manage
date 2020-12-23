@@ -36,16 +36,29 @@
         <div v-for="(item, index) in routerData" :key="index">
 
           <div v-if="item.children">
-            <!-- <template v-if="item.leaf">
+            <template v-if="item.leaf">
               <el-menu-item :index="item.children[0].path">
-                 {{item.children[0].name}}
-                </el-menu-item>
-            </template> -->
-            <template v-for="child in item.children">
-                <el-menu-item :key="child.path" :index="child.path">
-                 {{child.name}}
+                 <div class="routerItem">
+                    <img :src="item.icon" class="RouterSvgStyle" />
+                              {{item.children[0].name}}123
+                  </div>
                 </el-menu-item>
             </template>
+           
+            <el-submenu v-else :index="!item.slepath?item.path:item.slepath">
+                <template slot="title">
+                  <div class="routerItem">
+                   <img :src="item.icon" class="RouterSvgStyle" />
+                          <!-- <i :class="item.children[0].icon"></i> -->
+                          {{item.name}}
+                  </div>
+                </template>
+              <template v-for="child in item.children">
+                  <el-menu-item  v-show="!child.hide" :key="child.path" :index="child.path">
+                  {{child.name}}
+                  </el-menu-item>
+              </template>
+            </el-submenu>
           </div>
         </div>
       </el-menu>
@@ -77,7 +90,7 @@ export default {
     };
   },
   created() {
-    // console.log(JSON.parse(localStorage.getItem('defaultrouteList')))
+    console.log(JSON.parse(localStorage.getItem('defaultrouteList')))
     // console.log(this.$router.options.routes, "ab");
     // console.log(this.$route.path, "222");
     // console.log(this.routerData,'routerData')

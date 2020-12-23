@@ -11,21 +11,19 @@ const defaultrouteList = [
   {
     path: '/',
     component: "home",
-    leaf: true,  
+    name:'首页管理',
+    leaf: false,  
     children: [
       {
         path: '/',
         redirect: '/admin/dashed',
         name: '首页',
-        component: 'admin/dashed'
+        component: 'admin/dashed',
+        slepath:'/dashed',
       },
-      // {
-      //   path: '/excel',
-      //   name: '报表管理',
-      //   component: 'admin/excel'
-      // },
       {
         path: '/user',
+        slepath:'/user',
         name: '表单',
         component: 'admin/user'
       },
@@ -39,9 +37,32 @@ const defaultrouteList = [
         name: 'table',
         component: 'admin/tables'
       },
-     
     ]
   },
+  {
+    path:'/teaching',
+    name:'教学管理',
+    component: "home",
+    leaf:false,
+    children:[
+      {
+        path:'/classtable',
+        name:'我的课表',
+        component:'teaching/classtable'
+      },
+      {
+        path:'/classtableDetail',
+        name:'课表详情',
+        component:'teaching/classtableDetail',
+        hide:true,
+      },
+      {
+        path:'/releasetest',
+        name:'发布试卷',
+        component:'teaching/releasetest'
+      }
+    ]
+  }
   ]
 export function routerMenuFun(defaultrouteList){
   let routerList=[];

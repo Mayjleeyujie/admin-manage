@@ -11,6 +11,9 @@ import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 
+import '@/router/permission' 
+import SearchQuery from '@/components/selectQuery'//条件搜索上下拉动的组件
+
 import DynamicForm from 'vue-dynamic-form-component'
 Vue.use(DynamicForm)
 import VueFormGenerator from "vue-form-generator";
@@ -28,6 +31,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(formCreate)
 //
+Vue.component('SearchQuery',SearchQuery)
 
 Vue.prototype.$axios = axios;
 /* eslint-disable no-new */

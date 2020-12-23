@@ -36,7 +36,7 @@ export default {
       }
     },
     mounted(){
-      console.log(this.drawingList,)
+      // console.log(this.drawingList,)
     },
     methods:{
       activeFormItem(){

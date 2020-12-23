@@ -12,7 +12,7 @@
             <div>
               <ul class="canvas_head">
                 <li class="control">
-                  <a @click="handleOpen()">
+                  <a @click="handleOpen()"> 
                     <input type="file" class="openFile">
                     <i class="el-icon-folder-opened" />
                     导入
@@ -148,7 +148,7 @@ export default {
       try {
         const result = this.bpmnModeler.importXML(xmlStr);
         const { warnings } = result;
-        console.log(warnings);
+        // console.log(warnings);
       } catch (err) {
         console.log(err.message, err.warnings);
       }
