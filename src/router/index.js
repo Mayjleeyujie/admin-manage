@@ -65,7 +65,23 @@ const defaultrouteList = [
         path:'/releasetest',
         name:'发布试卷',
         component:'teaching/releasetest'
-      }
+      },
+      {
+        path:'/homework',
+        name:'作业列表',
+        component:'teaching/homework'
+      },
+      {
+        path:'/addhomework',
+        name:'布置作业',
+        component:'teaching/addhomework',
+        hide:true,
+      },
+      {
+        path:'/teachsignin',
+        name:'授课签到',
+        component:'teaching/teachsignin'
+      },
     ]
   }
   ]
