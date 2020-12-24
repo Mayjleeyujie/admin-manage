@@ -47,7 +47,7 @@ const defaultrouteList = [
     children:[
       {
         path:'/classtable',
-        name:'我的课表',
+        name:'课题列表',
         component:'teaching/classtable'
       },
       {
@@ -55,6 +55,11 @@ const defaultrouteList = [
         name:'课表详情',
         component:'teaching/classtableDetail',
         hide:true,
+      },
+      {
+        path:'/myclass',
+        name:'我的课表',
+        component:'teaching/myclass'
       },
       {
         path:'/releasetest',

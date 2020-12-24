@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>教学管理</el-breadcrumb-item>
-                <el-breadcrumb-item>我的课表</el-breadcrumb-item>
+                <el-breadcrumb-item>课题列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <SearchQuery>
