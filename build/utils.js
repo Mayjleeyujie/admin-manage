@@ -37,7 +37,8 @@ exports.cssLoaders = function (options) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+          sourceMap: options.sourceMap,
+          javascriptEnabled:true
         })
       })
     }
@@ -47,20 +48,25 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
+        publicPath: '../../',
         fallback: 'vue-style-loader'
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
   }
-
-  // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    less: generateLoaders('less',{
+          modifyVars: {
+            'primary-color': '#blue', 
+             'link-color': '#pink',
+             'border-radius-base': '2px',
+           },
+           javascriptEnabled: true,
+    }),
     sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
