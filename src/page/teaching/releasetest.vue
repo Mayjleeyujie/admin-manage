@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-      试卷
+      <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item>教学管理</el-breadcrumb-item>
+                <el-breadcrumb-item>发布试卷</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
   </div>
 </template>
 
