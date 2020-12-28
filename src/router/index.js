@@ -82,6 +82,11 @@ const defaultrouteList = [
         name:'授课签到',
         component:'teaching/teachsignin'
       },
+      {
+        path:'/facultyadmin',
+        name:'教职工管理',
+        component:'teaching/facultyadmin'
+      },
     ]
   }
   ]

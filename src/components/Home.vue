@@ -2,8 +2,17 @@
   <div class="index_body">
     <div class="header">
       <div class="dept">
+          <el-tooltip class="item"
+                      effect="dark"
+                      :content="tooltip"
+                      placement="right">
+            <i :class="toggleIcon"
+              id="toggle"
+              @click="toggle">
+            </i>
+          </el-tooltip>
         <span class="depttitle">
-          <!-- {{ proName }} -->
+          {{ proName }}
         </span>
       </div>
       <div class="msg">
@@ -25,7 +34,7 @@
         </el-dropdown>
       </div>
     </div>
-    <div class="menu">
+    <div class="menu"  :isShrink="isShrink" :style="{width:isShrink? '0' : '180px',padding:isShrink?'0':'10px 10px 10px 15px'}">
       <el-menu
         class="el-menu-vertical-demo"
         :default-active="defaultActive"
@@ -75,6 +84,8 @@
 </template>
 
 <script>
+import $ from 'jquery';
+
 export default {
   data() {
     return {
@@ -83,10 +94,14 @@ export default {
       userInfo: {
         name: "用户名",
       },
+      tooltip: '收起',
+      toggleIcon: 'el-icon-s-fold',
       activeIndex: "1",
       activeIndex2: "1",
       defaultActive: this.$route.path,
       key: 0,
+      showAsideBar:true,
+      isShrink:false,
     };
   },
   created() {
@@ -116,6 +131,20 @@ export default {
         }
       });
     },
+    //折叠 & 收起
+    toggle(){
+      // this.showAsideBar = !this.showAsideBar;
+            if (!this.isShrink) {
+                $('.menu').animate({
+                    width: '100px'
+                }, 500);
+            } else {
+                $('.menu').animate({
+                    width: '180px'
+                }, 500);
+            }
+            this.isShrink = !this.isShrink;
+    }
   },
 };
 </script>
@@ -144,6 +173,10 @@ export default {
     .dept {
       color: #fff;
       float: left;
+      margin-left:30px;
+      .depttitle{
+        margin-left:40px;
+      }
     }
     .msg {
       float: right;

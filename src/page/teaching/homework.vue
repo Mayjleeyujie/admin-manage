@@ -55,7 +55,7 @@ export default {
                 {
                     name:'张三',
                     class:'12班',
-                    phone:'11025451255',
+                    phone:'13912311441',
                     homestatus:1,
                     code:1,
                 },
@@ -79,6 +79,26 @@ export default {
                     phone:'19013241589',
                     homestatus:0,
                     code:2,
+                },
+                {
+                    name:'zhuli',
+                    class:'15班',
+                    phone:'16212412575',
+                    homestatus:1,
+                    code:2,
+                },
+                 {
+                    name:'Jack',
+                    class:'12班',
+                    phone:'16712451475',
+                    homestatus:1,
+                    code:2,
+                },{
+                    name:'Rose',
+                    class:'13班',
+                    phone:'14012561125',
+                    homestatus:0,
+                    code:1
                 }
             ]
         }
@@ -137,7 +157,9 @@ export default {
         exportExcel(){},
         //编辑
         editHomework(){
-
+            this.$router.push({
+                path:"/addhomework",
+            });
         },
         //删除
         removeIndex(){
