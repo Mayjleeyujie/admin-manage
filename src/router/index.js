@@ -88,8 +88,21 @@ const defaultrouteList = [
         component:'teaching/facultyadmin'
       },
     ]
+  },
+  {
+    path:'/process',
+    name:'流程设计器',
+    component: "home",
+    leaf:false,
+    children:[
+      {
+        path:'/processlist',
+        name:'流程列表',
+        component:'process/processlist'
+      }
+    ],
   }
-  ]
+]
 export function routerMenuFun(defaultrouteList){
   let routerList=[];
   // console.log(defaultrouteList,'defaultrouteList')
