@@ -12,7 +12,7 @@
             </i>
           </el-tooltip>
         <span class="depttitle">
-          {{ proName }}
+          <!-- {{ proName }} -->
         </span>
       </div>
       <div class="msg">
@@ -25,9 +25,9 @@
             </span>
              <el-dropdown-menu slot="dropdown">
                 <ul class="userM">
-                    <li class="user_msg"><span>姓名：</span><span>Dao</span></li>
-                    <li class="user_msg"><span>电话：</span><span>180-1122-3311</span></li>
-                    <li class="user_msg"><span>地址：</span><span>西大门</span></li>
+                    <li class="user_msg" style="margin:8px;"><span>姓名：</span><span>Dao</span></li>
+                    <li class="user_msg" style="margin:8px;"><span>电话：</span><span>180-1122-3311</span></li>
+                    <li class="user_msg" style="margin:8px;"><span>地址：</span><span>西大门</span></li>
                 </ul>
             <el-dropdown-item><el-button @click="loginOut" type="text">退出</el-button></el-dropdown-item>
           </el-dropdown-menu>
@@ -192,8 +192,8 @@ export default {
       }
       .userM{
         padding:10px;
-        >>>.user_msg{
-          padding:10px;
+        .user_msg{
+          margin:10px;
         }
       }
     }

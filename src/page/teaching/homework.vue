@@ -12,7 +12,6 @@
             <el-button size="mini" @click="changeStatus(2)">全部作业(<span class="red">2</span>）</el-button>
             <el-button size="mini" type="primary" style="float: right;" @click="releaseHomework">布置作业</el-button>
         </div>
-
         <div class="tableStyle">
              <div class="tableTitleContainer">
                 <span>作业</span>
