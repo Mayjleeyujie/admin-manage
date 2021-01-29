@@ -57,7 +57,9 @@
             width="450px"
             center
             >
-             <el-table :data="gridData">
+             <el-table :data="gridData" ref="multipleTable"  @selection-change="handleSelectionChange" >
+                 <el-table-column type="selection" width="55" align="center">
+                </el-table-column>
                 <el-table-column property="class" label="班级" width="150"></el-table-column>
                 <el-table-column property="name" label="姓名" width="200"></el-table-column>
                 <el-table-column property="sf" label="身份"></el-table-column>
@@ -81,6 +83,7 @@ export default {
                 content:'',
                 title:''
             },
+            multipleSelection: [],
             dialogImageUrl: '',
             pickerOptions: {
                 disabledDate(time) {
@@ -146,7 +149,10 @@ export default {
             this.dialogImageUrl = file.url;
             // this.dialogVisible = true;
         },
-        addFun(){}
+        addFun(){},
+        handleSelectionChange(val) {
+         this.multipleSelection = val;
+        },
     }
 }
 </script>

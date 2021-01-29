@@ -11,7 +11,7 @@
         </div>
         <SearchQuery>
             <div class="search">
-                <el-form :inline="true" class="moreConditions">
+                <el-form :inline="true" class="moreConditions"> 
                 <el-form-item label="流程名称:">
                     <el-input size="mini" clearable v-model="form.title"></el-input>
                 </el-form-item>
@@ -43,19 +43,18 @@
                     <el-button size="mini" type="primary" @click="exportExcel()">导出</el-button>
                 </span>
             </div>
-         <el-table :data="TableData" style="width: 100%" class="elTable" v-loading="loading">
-            <el-table-column align="center" label="序号" type="index" width="50"></el-table-column>
-            <el-table-column align="center" label="课表标题" prop="title"></el-table-column>
-            <el-table-column align="center" label="课程时间" prop="time"></el-table-column>
-            <el-table-column align="center" label="授课教师" prop="teacher"></el-table-column>
-            
-            <el-table-column align="center" label="操作">
-                <template slot-scope="scope">
-                    <el-button size="small" type="text" @click="goDeatil(scope.row)">课表详情</el-button>
-                    <el-button size="small" type="text" @click="removeIndex(scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+            <el-table :data="TableData" style="width: 100%" class="elTable" v-loading="loading">
+                <el-table-column align="center" label="序号" type="index" width="50"></el-table-column>
+                <el-table-column align="center" label="课表标题" prop="title"></el-table-column>
+                <el-table-column align="center" label="课程时间" prop="time"></el-table-column>
+                <el-table-column align="center" label="授课教师" prop="teacher"></el-table-column>
+                <el-table-column align="center" label="操作">
+                    <template slot-scope="scope">
+                        <el-button size="small" type="text" @click="goDeatil(scope.row)">课表详情</el-button>
+                        <el-button size="small" type="text" @click="removeIndex(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
         </div>
   </div>
 </template>
@@ -92,7 +91,12 @@ export default {
 
     },
     methods:{
-
+        goDeatil(){},
+        removeIndex(){},
+        exportExcel(){},
+        initData(){},
+        searchList(){},
+        reset(){}
     }
 }
 </script>

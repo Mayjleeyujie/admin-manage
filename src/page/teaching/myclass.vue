@@ -1,5 +1,5 @@
 <template>
-  <div class="a">
+  <div class="myclass">
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>教学管理</el-breadcrumb-item>
@@ -14,8 +14,10 @@
             </el-row>
         </div>
         <div class="index_main">
-            <div class="content">
-                
+            <div class="box_p">
+                <p class="animation_p">
+                    段落的文
+                </p>
             </div>
         </div>
   </div>
@@ -28,16 +30,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.index_pageHeader{
-    height:96px;
-    .grid-content{
+.myclass{
+    .index_pageHeader{
         height:96px;
-        border:1px solid #ddd;
-        padding: 10px 0;
-        background-color: #f9fafc;
+        .grid-content{
+            height:96px;
+            border:1px solid #ddd;
+            padding: 10px 0;
+            background-color: #f9fafc;
+        }
     }
-    .row-bg {
-        
+    .index_main{    
+        height:196px;
+        .box_p{
+            // background: rgb(206, 29, 29);
+            .animation_p{
+                width:180px;
+                height:180px;
+                animation: test 3s ease 1s infinite normal none;
+            }
+        }
+        @keyframes test{
+            0%{background-color: lightblue;}
+            30%{background-color: lightgreen;}
+            60%{background-color: lightgray;}
+            100%{background-color:lightcoral;}
+        }
     }
 }
 

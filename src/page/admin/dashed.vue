@@ -90,6 +90,15 @@
                     @click="handldsaveimage"
                   ></a>
                 </li>
+                <li class="control">
+                  <a
+                    title="快捷键"
+                    @click="showShortcutKeys()"
+                  >
+                    <i class="keyboard" />
+                    快捷键
+                  </a>
+              </li>
               </ul>
             </div>
           </el-header>
@@ -212,7 +221,7 @@ export default {
         });
 
         var downloadLink = document.createElement("a");
-        downloadLink.download = "ops-coffee-bpmn.bpmn";
+        downloadLink.download = ".bpmn";
         downloadLink.innerHTML = "Get BPMN SVG";
         downloadLink.href = window.URL.createObjectURL(xmlBlob);
         downloadLink.onclick = function(event) {
@@ -259,10 +268,58 @@ export default {
         }
       })
     },
-    //
+    //保存图片
     handldsaveimage(){
+    },
+    //快捷键
+    showShortcutKeys(){
+      const showcutKeysHtml =
+        '	 <table>  ' +
+        '        <tbody>  ' +
+        '          <tr>  ' +
+        '            <td>撤销</td>  ' +
+        '            <td class="binding"><code>ctrl + Z</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>重做</td>  ' +
+        '            <td class="binding"><code>ctrl + ⇧ + Z</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>全选</td>  ' +
+        '            <td class="binding"><code>ctrl + A</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>滚动（垂直）</td>  ' +
+        '            <td class="binding"><code>ctrl + Scrolling</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>滚动（水平）</td>  ' +
+        '            <td class="binding"><code>ctrl + ⇧ + Scrolling</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>直接编辑</td>  ' +
+        '            <td class="binding"><code>E</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>拖拽工具</td>  ' +
+        '            <td class="binding"><code>H</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>自由套索工具</td>  ' +
+        '            <td class="binding"><code>L</code></td>  ' +
+        '          </tr>  ' +
+        '          <tr>  ' +
+        '            <td>空间移动工具</td>  ' +
+        '            <td class="binding"><code>S</code></td>  ' +
+        '          </tr>  ' +
+        '        </tbody>  ' +
+        '      </table>  '
 
+      this.$alert(showcutKeysHtml, '快捷键', {
+        dangerouslyUseHTMLString: true
+      }).catch(e => e)
     }
+
   }
 };
 </script>
