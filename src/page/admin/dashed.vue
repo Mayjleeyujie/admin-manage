@@ -5,122 +5,113 @@
         <el-breadcrumb-item>首页</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <el-tabs v-model="activeName" type="card" style="width:100% ;height:100%" @tab-click="handleClick">
+    <el-tabs
+      v-model="activeName"
+      type="card"
+      style="width: 100%; height: 100%"
+      @tab-click="handleClick"
+    >
       <el-tab-pane label="流程设计" name="first">
         <div id="processDesign" ref="processDesign" class="con">
           <el-header>
             <div>
               <ul class="canvas_head">
-                <li class="control">
-                  <a @click="handleOpen()"> 
-                    <input type="file" class="openFile">
-                    <i class="el-icon-folder-opened" />
-                    导入
-                  </a>
-                </li>
+                <!-- <li>
+                  <a href="javascript:" @click="$refs.refFile.click()"
+                    >加载本地BPMN文件</a
+                  >
+                  <input
+                    type="file"
+                    id="files"
+                    ref="refFile"
+                    style="display: none"
+                    @change="loadXML"
+                  />
+                </li> 
                 <li class="control">
                   <a href="" @click="handleSave()">
                     <i class="el-icon-folder" />
                     保存
                   </a>
-                </li>
+                </li>-->
                 <li class="control">
                   <a href="" @click="handleUndo()">
                     <i class="undo" />
                     撤销
                   </a>
                 </li>
-                 <li class="control">
-                  <a
-                    title="恢复"
-                    @click="handleRedo()"
-                  >
+                <li class="control">
+                  <a title="恢复" @click="handleRedo()">
                     <i class="redo" />
                     重做
                   </a>
                 </li>
-                 <li class="control">
-                  <a
-                    title="放大"
-                    @click="handleZoom(0.1)"
-                  >
+                <li class="control">
+                  <a title="放大" @click="handleZoom(0.1)">
                     <i class="el-icon-circle-plus-outline" />
                     放大
                   </a>
                 </li>
                 <li class="control">
-                  <a
-                    title="缩小"
-                    @click="handleZoom(-0.1)"
-                  >
+                  <a title="缩小" @click="handleZoom(-0.1)">
                     <i class="el-icon-remove-outline" />
                     缩小
                   </a>
                 </li>
                 <li class="control">
-                  <a
-                    title="还原"
-                    @click="handleZoom(0)"
-                  >
+                  <a title="还原" @click="handleZoom(0)">
                     <i class="el-icon-circle-plus-outline" />
                     还原
                   </a>
                 </li>
                 <li class="control">
-                  <a
-                    title="下载SVG图片"
-                    @click="handleDownloadSvg()"
-                  >
+                  <a title="下载SVG图片" @click="handleDownloadSvg()">
                     <i class="el-icon-picture" />
                     下载SVG图片
                   </a>
                 </li>
                 <li class="control">
-                  <a
-                    title="下载BPMN流程图"
-                    @click="handleDownloadBPMN()"
-                  >
+                  <a title="保存BPMN文件" @click="handleDownloadBPMN()">
                     <i class="el-icon-picture" />
-                    下载BPMN流程图
+                    保存BPMN文件
                   </a>
                 </li>
                 <li>
-                  <a 
-                    title="保存图片"
-                    @click="handldsaveimage"
-                  ></a>
+                  <a title="保存图片" @click="handldsaveimage"></a>
                 </li>
-                <li class="control">
-                  <a
-                    title="快捷键"
-                    @click="showShortcutKeys()"
+                &nbsp;&nbsp;
+                <li>
+                  <el-upload
+                    style="display: inline-block"
+                    :file-list="fileList"
+                    class="upload-demo"
+                    action=""
+                    :auto-upload="false"
+                    :show-file-list="false"
+                    :on-change="handleOnchangeFile"
+                    :on-remove="handleRemove"
                   >
-                    <i class="keyboard" />
-                    快捷键
-                  </a>
-              </li>
+                    <a>导入</a>
+                  </el-upload>
+                </li>
               </ul>
             </div>
           </el-header>
-            <div class="canvas containers" ref="canvas"></div>
+          <div class="canvas containers" ref="canvas"></div>
         </div>
-
       </el-tab-pane>
       <el-tab-pane label="流程设置" name="five">
-        <p>
-          456564
+        <p>456564
         </p>
       </el-tab-pane>
     </el-tabs>
-    
   </div>
 </template>
 
 <script>
 import BpmnModeler from "bpmn-js/lib/Modeler";
-import { xmlStr } from "@/mock/xmlStr"
+import { xmlStr } from "@/mock/xmlStr";
 // import {CustomModeler} from "@/components/customBpmn"
-
 
 export default {
   data() {
@@ -128,28 +119,30 @@ export default {
       bpmnModeler: null,
       container: null,
       canvas: null,
-      activeName:'first',
-      scale: 1 // 流程图比例
-
+      activeName: "first",
+      scale: 1, // 流程图比例
+      xmlStr: xmlStr,
+      fileList: [],
     };
   },
   mounted() {
     this.init();
     // 去除LOGO
-    const bjsIoLogo = document.querySelector('.bjs-powered-by')
+    const bjsIoLogo = document.querySelector(".bjs-powered-by");
     // console.log(bjsIoLogo.firstChild,'--------------------')
     if (bjsIoLogo.firstChild) {
-      bjsIoLogo.removeChild(bjsIoLogo.firstChild)
+      bjsIoLogo.removeChild(bjsIoLogo.firstChild);
     }
-    document.querySelector('.djs-palette').style.display = 'inline-block'
+    document.querySelector(".djs-palette").style.display = "inline-block";
 
+    // document.wnidow.addEventListener('touchmove', func, { passive: true })
   },
   methods: {
     // 此方法为官方流程画布 否则页面无流程图
     init() {
       const canvas = this.$refs.canvas;
       this.bpmnModeler = new BpmnModeler({
-        container: canvas
+        container: canvas,
       });
       this.createNewDiagram();
     },
@@ -157,10 +150,22 @@ export default {
       try {
         const result = this.bpmnModeler.importXML(xmlStr);
         const { warnings } = result;
-        // console.log(warnings);
+        console.log(warnings);
       } catch (err) {
         console.log(err.message, err.warnings);
       }
+      
+    },
+    loadXML() {
+      const that = this;
+      const file = this.$refs.refFile.files[0];
+
+      var reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = function () {
+        that.xmlStr = this.result;
+        that.createNewDiagram();
+      };
     },
     /**
      * 下载xml/svg
@@ -169,62 +174,85 @@ export default {
      *  @param  name  文件名称
      */
     download(type, data, name) {
-      let dataTrack = ''
-      const a = document.createElement('a')
+      let dataTrack = "";
+      const a = document.createElement("a");
 
       switch (type) {
-        case 'xml':
-          dataTrack = 'bpmn'
-          break
-        case 'svg':
-          dataTrack = 'svg'
-          break
+        case "xml":
+          dataTrack = "bpmn";
+          break;
+        case "svg":
+          dataTrack = "svg";
+          break;
         default:
-          break
+          break;
       }
 
       var bpmnName =
         this.bpmnModeler._definitions.rootElements[0].name ||
-        this.bpmnModeler._definitions.rootElements[0].id
-      var filename = bpmnName + '.' + dataTrack
+        this.bpmnModeler._definitions.rootElements[0].id;
+      var filename = bpmnName + "." + dataTrack;
 
-      name = name || `${filename}`
+      name = name || `${filename}`;
 
       a.setAttribute(
-        'href',
+        "href",
         `data:application/bpmn20-xml;charset=UTF-8,${encodeURIComponent(data)}`
-      )
-      a.setAttribute('target', '_blank')
-      a.setAttribute('dataTrack', `diagram:download-${dataTrack}`)
-      a.setAttribute('download', name)
+      );
+      a.setAttribute("target", "_blank");
+      a.setAttribute("dataTrack", `diagram:download-${dataTrack}`);
+      a.setAttribute("download", name);
 
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     },
 
     //tab切换
-    handleClick(){
-    },
+    handleClick() {},
     //导入
-    handleOpen(){
-
+    handleOpen() {
+      document.getElementsByClassName("openFile")[0].click();
+    },
+    onOpenFile(files) {
+      this.handleOpenFile(files);
+    },
+    // 导入xml文件
+    handleOpenFile(e) {
+      const that = this;
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      let data = "";
+      reader.readAsText(file);
+      reader.onload = function (event) {
+        data = event.target.result;
+        this.renderDiagram(data, "open");
+      };
     },
     //保存
-    handleSave(){
+    handleSave() {
       try {
         const result = this.bpmnModeler.saveXML({ format: true });
         const { xml } = result;
 
         var xmlBlob = new Blob([xml], {
-          type: "application/bpmn20-xml;charset=UTF-8,"
+          type: "application/bpmn20-xml;charset=UTF-8,",
         });
 
         var downloadLink = document.createElement("a");
-        downloadLink.download = ".bpmn";
+        // downloadLink.download = "ops-coffee-bpmn.bpmn";
+        a.setAttribute(
+          "href",
+          `data:application/bpmn20-xml;charset=UTF-8,${encodeURIComponent(
+            data
+          )}`
+        );
+        a.setAttribute("target", "_blank");
+        a.setAttribute("dataTrack", `diagram:download-${dataTrack}`);
+        a.setAttribute("download", name);
         downloadLink.innerHTML = "Get BPMN SVG";
         downloadLink.href = window.URL.createObjectURL(xmlBlob);
-        downloadLink.onclick = function(event) {
+        downloadLink.onclick = function (event) {
           document.body.removeChild(event.target);
         };
         downloadLink.style.visibility = "hidden";
@@ -235,128 +263,101 @@ export default {
       }
     },
     //撤销
-    handleUndo(){
+    handleUndo() {
       this.bpmnModeler.get("commandStack").undo();
     },
     //恢复-前进
-    handleRedo(){
+    handleRedo() {
       this.bpmnModeler.get("commandStack").redo();
     },
 
     //放大或缩小
-    handleZoom(radio){
+    handleZoom(radio) {
       const newScale = !radio ? 1.0 : this.scale + radio;
       this.bpmnModeler.get("canvas").zoom(newScale);
 
       this.scale = newScale;
     },
     //保存svg
-    handleDownloadSvg(){
-       this.bpmnModeler.saveSVG({ format: true }, (err, data) => {
-        console.log('err：' + err)
-        this.download('svg', data)
-        this.processDiagramSvg = data
-      })
+    handleDownloadSvg() {
+      this.bpmnModeler.saveSVG({ format: true }, (err, data) => {
+        console.log("err：" + err);
+        this.download("svg", data);
+        this.processDiagramSvg = data;
+      });
     },
-    //下载xml流程图
-    handleDownloadBPMN(){
-      this.bpmnModeler.saveXML({ }, (err, data) => {
+    //下载XML格式
+    handleDownloadBPMN() {
+      this.bpmnModeler.saveXML({}, (err, data) => {
         if (err) {
-          this.$message.error(err)
+          this.$message.error(err);
         } else {
-          this.download('xml', data.replace(/ns0:/g, 'flowable:'))
+          this.download("xml", data.replace(/ns0:/g, "flowable:"));
         }
-      })
+      });
     },
     //保存图片
-    handldsaveimage(){
+    handldsaveimage() {},
+    //上传图片
+    handleOnchangeFile(file) {
+      const reader = new FileReader();
+      let data = "";
+      reader.readAsText(file.raw);
+      reader.onload = (event) => {
+        data = event.target.result;
+        this.bpmnModeler.importXML(data, (err) => {
+          if (err) {
+            this.$message.info("导入失败");
+          } else {
+            this.$message.success("导入成功");
+          }
+        });
+      };
     },
-    //快捷键
-    showShortcutKeys(){
-      const showcutKeysHtml =
-        '	 <table>  ' +
-        '        <tbody>  ' +
-        '          <tr>  ' +
-        '            <td>撤销</td>  ' +
-        '            <td class="binding"><code>ctrl + Z</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>重做</td>  ' +
-        '            <td class="binding"><code>ctrl + ⇧ + Z</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>全选</td>  ' +
-        '            <td class="binding"><code>ctrl + A</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>滚动（垂直）</td>  ' +
-        '            <td class="binding"><code>ctrl + Scrolling</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>滚动（水平）</td>  ' +
-        '            <td class="binding"><code>ctrl + ⇧ + Scrolling</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>直接编辑</td>  ' +
-        '            <td class="binding"><code>E</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>拖拽工具</td>  ' +
-        '            <td class="binding"><code>H</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>自由套索工具</td>  ' +
-        '            <td class="binding"><code>L</code></td>  ' +
-        '          </tr>  ' +
-        '          <tr>  ' +
-        '            <td>空间移动工具</td>  ' +
-        '            <td class="binding"><code>S</code></td>  ' +
-        '          </tr>  ' +
-        '        </tbody>  ' +
-        '      </table>  '
-
-      this.$alert(showcutKeysHtml, '快捷键', {
-        dangerouslyUseHTMLString: true
-      }).catch(e => e)
-    }
-
-  }
+    handleRemove(file) {
+      for (let i = 0; i < this.fileList.length; i++) {
+        if (file.name === this.fileList[i].name) {
+          this.fileList.splice(i, 1);
+        }
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss" coped>
-html{
+html {
   touch-action: none;
 }
-.con{
-  width:100%;
-  height:500px;
+.con {
+  width: 100%;
+  height: 500px;
   touch-action: none;
-    .canvas_head{
-      display: flex;
-      border:1px solid #ddd;
-      padding:10px;
-      .control {
-        padding:0 5px;
-
-      }.openFile{
-        display: none
-      }
+  .canvas_head {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    .control {
+      padding: 0 5px;
     }
-    .containers {
-      background: white;
-      overflow: auto;
-      background-image: linear-gradient(
-          90deg,
-          rgba(220, 220, 220, 0.5) 6%,
-          transparent 0
-        ),
-        linear-gradient(rgba(192, 192, 192, 0.5) 6%, transparent 0);
-      background-size: 12px 12px;
-      width: 100%;
-      height: calc(100vh - 82px);
-      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    .openFile {
+      display: none;
     }
+  }
+  .containers {
+    background: white;
+    overflow: auto;
+    background-image: linear-gradient(
+        90deg,
+        rgba(220, 220, 220, 0.5) 6%,
+        transparent 0
+      ),
+      linear-gradient(rgba(192, 192, 192, 0.5) 6%, transparent 0);
+    background-size: 12px 12px;
+    width: 100%;
+    height: calc(100vh - 82px);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
 }
 .containers {
   width: 100%;
@@ -366,10 +367,13 @@ html{
   width: 100%;
   height: 100%;
 }
-.bjs-powered-by, .cjs-powered-by, .djs-powered-by, .io-control {
-    background: #FFF;
-    border-radius: 2px;
-    border: solid 1px #E0E0E0;
-    padding: 5px;
+.bjs-powered-by,
+.cjs-powered-by,
+.djs-powered-by,
+.io-control {
+  background: #fff;
+  border-radius: 2px;
+  border: solid 1px #e0e0e0;
+  padding: 5px;
 }
 </style>
