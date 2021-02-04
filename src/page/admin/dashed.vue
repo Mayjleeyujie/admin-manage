@@ -13,6 +13,8 @@
     >
       <el-tab-pane label="流程设计" name="first">
         <div id="processDesign" ref="processDesign" class="con">
+          <!-- <div id="js-properties-panel" class="panel"></div> -->
+          <!-- <panel ref="panel" :element="element" :businessObject="businessObject" :moddle="moddle" :modeling="modeling"/> -->
           <el-header>
             <div>
               <ul class="canvas_head">
@@ -111,7 +113,18 @@
 <script>
 import BpmnModeler from "bpmn-js/lib/Modeler";
 import { xmlStr } from "@/mock/xmlStr";
-// import {CustomModeler} from "@/components/customBpmn"
+import panel from '@/components/panel/panel.vue'
+//汉化
+import customTranslate from '@/components/custom-modeler/custom/customTranslate/customTranslate'
+
+
+ // 右侧属性栏
+import propertiesPanelModule from 'bpmn-js-properties-panel'
+import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+ // 一个描述的json
+import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda'
+
+import activitiModdleDescriptor from '@/util/activiti.json'//要自定义的属性
 
 export default {
   data() {
@@ -123,8 +136,14 @@ export default {
       scale: 1, // 流程图比例
       xmlStr: xmlStr,
       fileList: [],
+       businessObject:null,
+      element:null,
+      moddle:null,
+      modeling:null,
     };
   },
+  components:{panel},
+
   mounted() {
     this.init();
     // 去除LOGO
@@ -140,9 +159,37 @@ export default {
   methods: {
     // 此方法为官方流程画布 否则页面无流程图
     init() {
-      const canvas = this.$refs.canvas;
+
+       // 获取到属性ref为“content”的dom节点
+      this.container = this.$refs.content
+      // 获取到属性ref为“canvas”的dom节点
+      const canvas = this.$refs.canvas
+      //汉化包装成模块
+      const customTranslateModule = {
+        translate: ['value', customTranslate]
+      }
+      //建模 - 创建bpmn对象
       this.bpmnModeler = new BpmnModeler({
         container: canvas,
+
+        //加入工具栏支持
+        propertiesPanel: {
+          parent: '#processDesign'
+        },
+
+        additionalModules: [
+          //左边工具栏以及节点
+          propertiesProviderModule,
+          //右边的工具栏
+           propertiesPanelModule,
+           //右边的工具栏-汉化
+           customTranslateModule
+        ],
+        moddleExtensions: {
+          //如果要在属性面板中维护camunda：XXX属性，则需要此 
+          camunda: camundaModdleDescriptor,
+          // activiti: activitiModdleDescriptor
+        }
       });
       this.createNewDiagram();
     },
@@ -354,13 +401,13 @@ html {
       ),
       linear-gradient(rgba(192, 192, 192, 0.5) 6%, transparent 0);
     background-size: 12px 12px;
-    width: 100%;
+    width: 85%;
     height: calc(100vh - 82px);
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   }
 }
 .containers {
-  width: 100%;
+  width: 80%;
   height: calc(100vh - 82px);
 }
 .canvas {
@@ -375,5 +422,12 @@ html {
   border-radius: 2px;
   border: solid 1px #e0e0e0;
   padding: 5px;
+}
+.bpp-properties-panel{
+    z-index: 999;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 400px;
 }
 </style>

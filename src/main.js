@@ -11,7 +11,7 @@ import "bpmn-js/dist/assets/diagram-js.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
-
+import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css'
 import '@/router/permission' 
 import SearchQuery from '@/components/selectQuery'//条件搜索上下拉动的组件
 
