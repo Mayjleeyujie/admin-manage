@@ -113,7 +113,7 @@
 <script>
 import BpmnModeler from "bpmn-js/lib/Modeler";
 import { xmlStr } from "@/mock/xmlStr";
-import panel from '@/components/panel/panel.vue'
+// import panel from '@/components/panel/panel.vue'
 //汉化
 import customTranslate from '@/components/custom-modeler/custom/customTranslate/customTranslate'
 
@@ -121,6 +121,7 @@ import customTranslate from '@/components/custom-modeler/custom/customTranslate/
  // 右侧属性栏
 import propertiesPanelModule from 'bpmn-js-properties-panel'
 import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+
  // 一个描述的json
 import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda'
 
@@ -142,7 +143,7 @@ export default {
       modeling:null,
     };
   },
-  components:{panel},
+  // components:{panel},
 
   mounted() {
     this.init();
@@ -159,7 +160,6 @@ export default {
   methods: {
     // 此方法为官方流程画布 否则页面无流程图
     init() {
-
        // 获取到属性ref为“content”的dom节点
       this.container = this.$refs.content
       // 获取到属性ref为“canvas”的dom节点
@@ -178,10 +178,10 @@ export default {
         },
 
         additionalModules: [
-          //左边工具栏以及节点
-          propertiesProviderModule,
           //右边的工具栏
-           propertiesPanelModule,
+          propertiesProviderModule,
+          propertiesPanelModule,
+
            //右边的工具栏-汉化
            customTranslateModule
         ],
