@@ -171,7 +171,6 @@ export default {
       //建模 - 创建bpmn对象
       this.bpmnModeler = new BpmnModeler({
         container: canvas,
-
         //加入工具栏支持
         propertiesPanel: {
           parent: '#processDesign'
