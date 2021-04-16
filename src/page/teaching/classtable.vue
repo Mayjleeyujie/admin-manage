@@ -55,7 +55,7 @@
                 </el-form>
             </div>
         </SearchQuery>
-        
+
         <div class="tableStyle">
              <div class="tableTitleContainer">
                 <span>表单列表</span>
@@ -66,8 +66,8 @@
          <el-table :data="TableData" style="width: 100%" class="elTable" v-loading="loading">
             <el-table-column align="center" label="序号" type="index" width="50"></el-table-column>
             <el-table-column align="center" label="课表标题" prop="title"></el-table-column>
-            <el-table-column align="center" label="课程时间" prop="time"></el-table-column>
-            <el-table-column align="center" label="授课教师" prop="teacher"></el-table-column>
+            <el-table-column align="center" label="课程时间" prop="time" show-overflow-tooltip></el-table-column>
+            <el-table-column align="center" label="授课教师" prop="teacher" :show-overflow-tooltip='true'></el-table-column>
             <el-table-column align="center" label="课表状态">
             <template slot-scope="scope">
                 <el-tag
@@ -117,7 +117,7 @@ export default {
                 deptName:'',
                 title:''
             },
-            conditionTime:'',   
+            conditionTime:'',
             loading:false,
             timeOptions:[
                 {value:'1',label:'截止时间'},
@@ -137,14 +137,14 @@ export default {
                 {
                     title:'语文',
                     time:'20201221',
-                    teacher:'王老师',
+                    teacher:'王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师',
                     status:1,
                     code:2
                 },
                 {
                     title:'英语',
                     time:'20201103',
-                    teacher:'miss LeeJON',
+                    teacher:'miss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJONmiss LeeJON',
                     status:0,
                     code:2
                 },

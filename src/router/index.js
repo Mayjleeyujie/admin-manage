@@ -12,7 +12,7 @@ const defaultrouteList = [
     path: '/',
     component: "home",
     name:'首页管理',
-    leaf: false,  
+    leaf: false,
     children: [
       {
         path: '/',
@@ -90,15 +90,15 @@ const defaultrouteList = [
     ]
   },
   {
-    path:'/process',
-    name:'流程设计器',
+    path:'/management',
+    name:'广告管理',
     component: "home",
     leaf:false,
     children:[
       {
-        path:'/processlist',
-        name:'流程列表',
-        component:'process/processlist'
+        path:'/management',
+        name:'广告列表',
+        component:'adsManagemant/management'
       }
     ],
   }

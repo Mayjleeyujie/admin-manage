@@ -13,7 +13,7 @@
       </div>
       <el-table :data="tableData" style="width: 100%" class="elTable">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
-        <el-table-column align="center" label="班级" prop="deptName"></el-table-column>
+        <el-table-column align="center" label="班级" prop="deptName" show-overflow-tooltip></el-table-column>
         <el-table-column align="center" label="请假事由" prop="applyReason" :show-overflow-tooltip='true'></el-table-column>
         <el-table-column align="center" label="申请时间" prop="createTime"></el-table-column>
         <el-table-column align="center" label="操作" prop="desc">
