@@ -46,9 +46,9 @@
                   <a class="text-primary">{{row.fieldData}}</a>
                 </template>
       </el-table-column>
-
+      <el-table-column>
+      </el-table-column>
     </el-table>
-
   </div>
 </template>
 
