@@ -35,10 +35,21 @@
           </template>
         </el-table-column>
             <el-table-column align="center" label="操作">
-                <template slot-scope="scope">
+                <!-- <template slot-scope="scope">
                     <el-button size="small" type="text" @click="editHomework(scope.row)">编辑</el-button>
                     <el-button size="small" type="text" @click="removeIndex(scope.row)">删除</el-button>
-                </template>
+                </template> -->
+                 <template slot-scope="scope">
+                    <el-dropdown @command="handleCommand($event,scope.row)">
+                        <span class="el-dropdown-link">
+                        更多<i aria-hidden="true" class="el-icon-caret-bottom el-icon--right"></i>
+                        </span>
+                            <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item command="0" >编辑</el-dropdown-item>
+                            <el-dropdown-item command="1" >删除</el-dropdown-item> 
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                    </template>
             </el-table-column>
         </el-table>
         </div>
@@ -173,7 +184,20 @@ export default {
                 // })
             }).catch(() => {
              });
-        }
+        },
+         handleCommand(index,item){
+            switch (index){
+                case '0' :
+                this.$router.push({
+                    path:"/addhomework",
+                });
+                break;
+                case '1':
+                this.removeIndex()
+                break;
+            }
+            
+        },
     }
 
 }

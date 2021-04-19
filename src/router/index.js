@@ -89,6 +89,8 @@ const defaultrouteList = [
       },
     ]
   },
+ 
+
   {
     path:'/management',
     name:'广告管理',
