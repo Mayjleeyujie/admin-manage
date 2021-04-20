@@ -65,7 +65,7 @@
             </div>
          <el-table :data="TableData" style="width: 100%" class="elTable" v-loading="loading">
             <el-table-column align="center" label="序号" type="index" width="50"></el-table-column>
-            <el-table-column align="center" label="课表标题" prop="title"></el-table-column>
+            <el-table-column align="center" label="课表标题" prop="title" show-overflow-tooltip></el-table-column>
             <el-table-column align="center" label="课程时间" prop="time" show-overflow-tooltip></el-table-column>
             <el-table-column align="center" label="授课教师" prop="teacher" :show-overflow-tooltip='true'></el-table-column>
             <el-table-column align="center" label="课表状态">
@@ -76,8 +76,12 @@
                 effect="dark"
                 size="small"
                 >{{ scope.row.status | formatstatusTetx}}</el-tag>
-          </template>
-        </el-table-column>
+            </template>
+            </el-table-column>
+             <el-table-column
+                  type="selection"
+                  width="55">
+            </el-table-column>
             <el-table-column align="center" label="操作">
                 <template slot-scope="scope">
                     <el-button size="small" type="text" @click="goDeatil(scope.row)">课表详情</el-button>
@@ -128,14 +132,14 @@ export default {
             ],
             TableData:[
                 {
-                    title:'语文',
+                    title:'中古撒打算电话的好时机爱德华很多数据库韩都实际到货时间幅度',
                     time:'20201211',
                     teacher:'王老师',
                     status:0,
                     code:1
                 },
                 {
-                    title:'语文',
+                    title:'社会主义现代化建设发展方向以及社会主义现代化价值观的探讨',
                     time:'20201221',
                     teacher:'王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师王老师',
                     status:1,

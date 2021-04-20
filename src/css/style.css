@@ -168,3 +168,27 @@ input:focus,textarea:focus{outline: none; }
     background: #e6f1fc !important;
     border: 1px solid #a3d0fd !important;
   } */
+  
+  /* 左滑 右滑动画 */
+ /* 20200921 根据ui建议改成 淡入淡出 */
+  .left-move-enter,
+  .left-move-leave-to,
+  .right-move-enter,
+  .right-move-leave-to {
+    opacity: 0;
+  }
+  .left-move-enter-to,
+  .left-move-leave,
+  .right-move-enter-to,
+  .right-move-leave {
+    opacity: 1;
+  }
+  .left-move-enter-active,
+  .left-move-leave-active {
+    transition: opacity 0.1s;
+  }
+  
+  .right-move-enter-active,
+  .right-move-leave-active {
+    transition: opacity 0.2s;
+  }

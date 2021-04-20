@@ -1,0 +1,210 @@
+// 没有边框的按钮
+.custom-ghost-button {
+  border: 0;
+  line-height: 18px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  &:focus,
+  &:hover {
+    background: none;
+    color: $iconColorPrimary;
+    opacity: 0.8;
+  }
+  & .svg-icon {
+    margin-right: 6px;
+  }
+
+  & + span {
+    color: #e8e8e8;
+  }
+}
+
+.custom-button-group {
+  display: flex;
+  align-items: center;
+}
+// 清除浮动
+.clearfix {
+  clear: both;
+
+  &::after {
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+// 自定义表头样式
+.custom-table-header {
+  padding: 16px 24px;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom-first-column > .cell,
+.table-td-custom > .cell {
+  padding-left: 24px !important;
+}
+
+.custom-wrap {
+  padding: 30px 24px;
+}
+
+// 自定义标题头
+.custom-header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 24px;
+  color: var(--textPrimary);
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid $borderColorBase;
+  .custom-tip {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--textSecondary);
+    margin-left: 6px;
+  }
+}
+.custom-row {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 24px;
+  border-bottom: 1px solid $borderColorBase;
+}
+.custom-header-background {
+  padding: 0 24px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  color: var(--textPrimary);
+  background: var(--backgroundBase);
+  font-size: 14px;
+  font-weight: bold;
+}
+.form-item-tip {
+  display: inline-block;
+  line-height: 1.5;
+  color: var(--textSecondary);
+}
+div + .form-item-tip {
+  margin-top: 9px;
+}
+// 广告组 广告系列 详情开关
+.custom-toggle-controller {
+  line-height: 18px;
+  padding-top: 18px;
+  color: var(--primary);
+  text-align: center;
+}
+
+.custom-toggle-controller.open {
+  text-align: right;
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+// 含有保存按钮的行
+.custom-has-save {
+  width: calc(100% - 28px);
+  margin-right: 12px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.el-form-item {
+  .ant-select {
+    width: 100%;
+  }
+}
+/* 自定义列表加载动画 */
+
+.custom-loading {
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 2s ease infinite;
+  display: inline-block;
+  height: 15px;
+  width: 100%;
+  vertical-align: middle;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+// 左滑 右滑动画
+// 20200921 根据ui建议改成 淡入淡出
+.left-move-enter,
+.left-move-leave-to,
+.right-move-enter,
+.right-move-leave-to {
+  opacity: 0;
+}
+.left-move-enter-to,
+.left-move-leave,
+.right-move-enter-to,
+.right-move-leave {
+  opacity: 1;
+}
+.left-move-enter-active,
+.left-move-leave-active {
+  transition: opacity 0.1s;
+}
+
+.right-move-enter-active,
+.right-move-leave-active {
+  transition: opacity 0.2s;
+}
+
+.shadow-small {
+  box-shadow: 0 0 9px 0 var(--shadowPrimary);
+}
+.custom-input-width {
+  width: 324px;
+}
+.setting-preview {
+  height: 46px;
+  padding: 0 24px;
+  line-height: 46px;
+
+  .setting-preview-label {
+    margin-left: 16px;
+    color: var(--textRegular);
+  }
+
+  .setting-preview-label,
+  .setting-preview-content {
+    vertical-align: middle;
+  }
+}
+.form-catalog-title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 18px;
+}
+
+.el-tabs__nav-wrap.is-scrollable {
+  .has-tab-operate {
+    position: relative;
+    padding-right: 40px;
+    box-sizing: content-box;
+  }
+  .tab-operate {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+  }
+}

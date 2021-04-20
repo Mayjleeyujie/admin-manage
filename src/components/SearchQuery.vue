@@ -11,7 +11,7 @@
             <span class="moreIconContainer">
               <img
                 :class="moreStatus?'active iconStyle':'iconStyle'"
-                src="../../assets/more.png"
+                src="../assets/more.png"
                 alt
               />
               <span class="textStyle">{{moreText}}</span>

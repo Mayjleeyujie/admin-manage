@@ -29,7 +29,7 @@
                     style="display: none"
                     @change="loadXML"
                   />
-                </li> 
+                </li>
                 <li class="control">
                   <a href="" @click="handleSave()">
                     <i class="el-icon-folder" />
@@ -185,7 +185,7 @@ export default {
            customTranslateModule
         ],
         moddleExtensions: {
-          //如果要在属性面板中维护camunda：XXX属性，则需要此 
+          //如果要在属性面板中维护camunda：XXX属性，则需要此
           camunda: camundaModdleDescriptor,
           // activiti: activitiModdleDescriptor
         }
@@ -200,7 +200,7 @@ export default {
       } catch (err) {
         console.log(err.message, err.warnings);
       }
-      
+
     },
     loadXML() {
       const that = this;
@@ -372,13 +372,15 @@ export default {
 </script>
 
 <style lang="scss" coped>
-html {
+html,body{
   touch-action: none;
+  height: 100%;
 }
 .con {
   width: 100%;
-  height: 500px;
+  height: 80%;
   touch-action: none;
+  margin-bottom:20px;
   .canvas_head {
     display: flex;
     border: 1px solid #ddd;

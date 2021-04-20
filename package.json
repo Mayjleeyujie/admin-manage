@@ -30,7 +30,8 @@
     "vue-form-generator": "^2.3.4",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.24.3",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "wangeditor": "^4.6.15"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 // import $ from 'jquery';
+import components from './components'
 import draggable from 'vuedraggable'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -13,9 +14,8 @@ import "bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
 import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css'
-import '@/router/permission' 
-import SearchQuery from '@/components/selectQuery'//条件搜索上下拉动的组件
-
+import '@/router/permission'
+// require('./style/custom.scss')
 import DynamicForm from 'vue-dynamic-form-component'
 Vue.use(DynamicForm)
 import VueFormGenerator from "vue-form-generator";
@@ -25,15 +25,20 @@ Vue.use(VueFormGenerator)
 import formCreate from '@form-create/element-ui';
 // import 'k-form-design/styles/k-form-design.less'
 
+//拖拽表单
 import KFormDesign from 'k-form-design'
 import 'k-form-design/lib/k-form-design.css'
 Vue.use(KFormDesign)
- 
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(formCreate)
-//
-Vue.component('SearchQuery',SearchQuery)
+
+// Vue.component('SearchQuery',SearchQuery)
+// 全局组件 不用一个个引入
+Object.keys(components).forEach((key) => {
+  Vue.component(key, components[key])
+})
 
 Vue.prototype.$axios = axios;
 /* eslint-disable no-new */
