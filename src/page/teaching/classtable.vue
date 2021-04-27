@@ -23,23 +23,18 @@
                     <el-button size="mini" @click="timeForMat(7)">最近7天</el-button>
                     <el-button size="mini" @click="timeForMat(30)">最近30天</el-button>
                     </el-button-group>
-                    <el-date-picker
-                    v-model="form.startTime"
-                    value-format="yyyy-MM-dd"
-                    @change="changeTime(1)"
-                    size="mini"
-                    type="date"
-                    placeholder="开始日期">
-                    </el-date-picker>
-                    <span class="timeCenter">至</span>
-                    <el-date-picker
-                    v-model="form.endTime"
-                    value-format="yyyy-MM-dd"
-                    @change="changeTime(2)"
-                    size="mini"
-                    type="date"
-                    placeholder="结束日期">
-                    </el-date-picker>
+                                <el-date-picker
+                                  v-model="selectDate"
+                                  align="right"
+                                  class="align-middle"
+                                  type="datetimerange"
+                                  size="small"
+                                  style="width: 360px"
+                                  :picker-options="pickerOptions"
+                                  start-placeholder="开始时间"
+                                  end-placeholder="结束时间"
+                                  @change="handleDateChange"
+                                  ></el-date-picker>
                 </el-form-item>
                     <br>
                 <el-form-item label="课表标题:">
@@ -130,6 +125,38 @@ export default {
                 {value:'4',label:'反馈时间'},
                 {value:'5',label:'阅办时间'}
             ],
+            selectDate:[],
+            pickerOptions: {
+                    shortcuts: [
+                      {
+                        text: '最近一周',
+                        onClick(picker) {
+                          const end = new Date()
+                          const start = new Date()
+                          start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                          picker.$emit('pick', [start, end])
+                        },
+                      },
+                      {
+                        text: '最近一个月',
+                        onClick(picker) {
+                          const end = new Date()
+                          const start = new Date()
+                          start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                          picker.$emit('pick', [start, end])
+                        },
+                      },
+                      {
+                        text: '最近三个月',
+                        onClick(picker) {
+                          const end = new Date()
+                          const start = new Date()
+                          start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+                          picker.$emit('pick', [start, end])
+                        },
+                      },
+                    ],
+                  },
             TableData:[
                 {
                     title:'中古撒打算电话的好时机爱德华很多数据库韩都实际到货时间幅度',
@@ -242,7 +269,7 @@ export default {
         //时间格式化
         timeForMat(count){
             let time1=new Date();
-            time1.setTime(time1.getTime()-(24 * 60 * 60 * 1000));
+            time1.setTime(time1.getTime()-(24 * 60 * 60 * 1000)); //昨天
             let Y1 = time1.getFullYear();
             let M1 = time1.getMonth() + 1<10? "0" + time1.getMonth() + 1:  time1.getMonth() + 1;
             let D1 = time1.getDate()<10? "0" + time1.getDate() : time1.getDate();
@@ -256,6 +283,28 @@ export default {
             time2 = Y2+'-'+M2+'-'+D2;//之前的7天或者30天
             this.form.endTime=time1
             this.form.startTime=time2
+            console.log(time1,time2,'345')
+        },
+        handleDateChange(val){
+            if(val && val.length){
+                      const start = val[0];
+                      const year = start.getFullYear() + '-';
+                      const month = (start.getMonth() + 1 < 10 ? '0' + (start.getMonth() + 1) : start.getMonth() + 1) + '-'
+                      const day = (start.getDate() < 10 ? '0' + start.getDate() : start.getDate()) + ' '
+                      const hour = (start.getHours() < 10 ? '0' + start.getHours() : start.getHours()) + ':'
+                      const mintues = (start.getMinutes() < 10 ? '0' + start.getMinutes() : start.getMinutes()) + ':'
+                      const seconds = (start.getSeconds() < 10 ? '0' + start.getSeconds() : start.getSeconds());
+                      this.selectDate[0] = year + month + day + hour + mintues + seconds;
+                      const endTime = val[1];
+                      const y2 = endTime.getFullYear() + '-';
+                      const m2 = (endTime.getMonth() + 1 < 10 ? '0' + (endTime.getMonth() + 1) : endTime.getMonth() + 1) + '-'
+                      const d2 = (endTime.getDate() < 10 ? '0' + endTime.getDate() : endTime.getDate()) + ' '
+                      const h2 = (endTime.getHours() < 10 ? '0' + endTime.getHours() : endTime.getHours()) + ':'
+                      const mintues2 = (endTime.getMinutes() < 10 ? '0' + endTime.getMinutes() : endTime.getMinutes()) + ':'
+                      const seconds2 = (endTime.getSeconds() < 10 ? '0' + endTime.getSeconds() : endTime.getSeconds());
+                      this.selectDate[1] = y2 + m2 + d2 + h2 + mintues2 + seconds2
+                      
+            }
         },
         searchList(){},
         reset(){

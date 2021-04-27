@@ -6,6 +6,19 @@
                 <el-breadcrumb-item>我的课表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+                    <el-date-picker
+                      v-model="selectDate"
+                      align="right"
+                      class="align-middle"
+                      type="datetimerange"
+                      size="small"
+                      style="width: 310px"
+                      :picker-options="pickerOptions"
+                      :start-placeholder="langs.startTime"
+                      :end-placeholder="langs.endTime"
+                      @change="handleDateChange"
+                    >
+                    </el-date-picker>
         
         <div class="index_pageHeader">
             <el-row :gutter="20">
@@ -25,6 +38,17 @@
 
 <script>
 export default {
+  data(){
+    return{
+       pickerOptions: {
+              disabledDate(time) {
+                // 因为time的时间是 00：00：00 所以加上一天的时间
+                const s = 60 * 60 * 24 * 1000 - 1
+                return time.getTime() + s < Date.now();
+              }
+            },
+    }
+  }
 
 }
 </script>

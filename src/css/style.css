@@ -192,3 +192,5 @@ input:focus,textarea:focus{outline: none; }
   .right-move-leave-active {
     transition: opacity 0.2s;
   }
+  
+  
