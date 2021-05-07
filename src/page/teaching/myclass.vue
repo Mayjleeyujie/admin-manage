@@ -14,12 +14,12 @@
                       size="small"
                       style="width: 310px"
                       :picker-options="pickerOptions"
-                      :start-placeholder="langs.startTime"
-                      :end-placeholder="langs.endTime"
+                      start-placeholder="开始时间"
+                      end-placeholder="结束时间"
                       @change="handleDateChange"
                     >
                     </el-date-picker>
-        
+
         <div class="index_pageHeader">
             <el-row :gutter="20">
                 <el-col :span="16"><div class="grid-content bg-purple">123</div></el-col>
@@ -40,6 +40,7 @@
 export default {
   data(){
     return{
+      selectDate:[],
        pickerOptions: {
               disabledDate(time) {
                 // 因为time的时间是 00：00：00 所以加上一天的时间
@@ -47,6 +48,11 @@ export default {
                 return time.getTime() + s < Date.now();
               }
             },
+    }
+  },
+  methods:{
+    handleDateChange(val) {
+
     }
   }
 
@@ -64,7 +70,7 @@ export default {
             background-color: #f9fafc;
         }
     }
-    .index_main{    
+    .index_main{
         height:196px;
         .box_p{
             // background: rgb(206, 29, 29);

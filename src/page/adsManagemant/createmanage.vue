@@ -76,7 +76,7 @@
                 重置
               </el-button>
               <el-button size="small" type="primary" plain @click="submitForm">
-                添加
+                确认
               </el-button>
             </div>
           </el-form>
@@ -214,6 +214,9 @@ export default {
           return false;
         }
       });
+       this.$router.push({
+         path:'/Addmanagement'
+       })
     },
     reset() {
       this.ruleForm = {
@@ -231,6 +234,6 @@ export default {
 
 <style>
 .btn-submit{
- 
+
 }
 </style>

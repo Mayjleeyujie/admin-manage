@@ -89,7 +89,7 @@ const defaultrouteList = [
       },
     ]
   },
- 
+
 
   {
     path:'/management',
@@ -107,7 +107,13 @@ const defaultrouteList = [
         name:'创建广告',
         component:'adsManagemant/createmanage'
       },
-      
+      {
+        path:'/Addmanagement',
+        name:'增加广告',
+        hide: true,
+        component:'adsManagemant/Addmanagement'
+      },
+
     ],
   }
 ]
